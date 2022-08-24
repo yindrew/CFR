@@ -7,9 +7,14 @@ public class ColonelBlottoTest {
 
     @Test
     public void testGetStrategy() {
-        double[] buckets = cB.getStrategy();
+        cB.train(100000);
+        double[] avgStrat = cB.getAverageStrategy(cB.strategySum);
 
-        System.out.println(Arrays.toString(buckets));
+        for(int x = 0; x < avgStrat.length; x++){
+            System.out.println(cB.strategyList[x] + ": " + avgStrat[x]);
+        }
+
+
 
     }
 }
