@@ -1,19 +1,35 @@
 import java.util.Random;
 
-
+/**
+ * A representation of the game Colonel Blotto with two players
+ * finding the optimal strategy
+ */
 public class ColonelBlotto {
     public static final int NUM_ACTIONS = 21;
-    
     public static final Random random = new Random();
+ 
+    // player one's strategies and regrets 
     double[] regretSum = new double[NUM_ACTIONS],
             strategySum = new double[NUM_ACTIONS],
             strategy = new double[NUM_ACTIONS];
-    String oppStrategy = "221";
+
+    // player two's strategies and regrets
+    double[] oppRegretSum = new double[NUM_ACTIONS],
+            oppStrategySum = new double[NUM_ACTIONS],
+            oppStrategy = new double[NUM_ACTIONS];
+    
+    /**
+     * total comprehensive strategy list. each digit represents how many soldiers 
+     * are put into each battlefield
+     */
     String[] strategyList = { "500", "410", "401", "320", "311", "302",
             "230", "221", "212", "203", "140", "131", "122", "113", "104",
             "050", "041", "032", "023", "014", "005" };
     
-    
+    /**
+     * get the strategy for player one
+     * @return the strategy for player one
+     */
     public double[] getStrategy() {
         double normalizingSum = 0;
         for(int a = 0; a < NUM_ACTIONS; a++){
@@ -34,6 +50,35 @@ public class ColonelBlotto {
         return strategy;
     }
 
+    /**
+     * get the strategy for player 2
+     * @return the strategy for player 2
+     */
+    public double[] getOppStrategy() {
+        double normalizingSum = 0;
+        for(int a = 0; a < NUM_ACTIONS; a++){
+            oppStrategy[a] = oppRegretSum[a] > 0 ? oppRegretSum[a] : 0;
+            normalizingSum += oppStrategy[a];
+        }
+
+        for(int x = 0; x < NUM_ACTIONS; x++){
+            if(normalizingSum > 0){
+                oppStrategy[x] /= normalizingSum;
+            }
+            else{
+                oppStrategy[x] = 1.0 / NUM_ACTIONS;
+            }
+            oppStrategySum[x] += oppStrategy[x];
+        }
+        
+        return oppStrategy;
+    }
+
+    /**
+     * get a random action based on frequencies
+     * @param strategy the strategy being used
+     * @return a action based on a strategy
+     */
     public String getAction(double[] strategy){
         double r = random.nextDouble();
         int a = 0;
@@ -72,16 +117,29 @@ public class ColonelBlotto {
 
     }
 
-
+    /**
+     * training the bots by playing a multitude of times
+     * @param iterations the number of times the players play against each other
+     */
     public void train(int iterations) {
         for (int i = 0; i < iterations; i++) {
-            double[] strategy = getStrategy();
-            String action = getAction(strategy);
-            int actionUtil = getDifference(action, oppStrategy);
+            double[] playerStrat = getStrategy();
+            String action = getAction(playerStrat);
+            double[] oppStrat = getOppStrategy();
+            String oppAction = getAction(oppStrat);
+
+            int actionUtil = getDifference(action, oppAction);
+
             for(int x = 0; x < NUM_ACTIONS; x++){
-                int potentialAction = getDifference(strategyList[x], oppStrategy);
+                int potentialAction = getDifference(strategyList[x], oppAction);
                 regretSum[x] += potentialAction - actionUtil;
             }
+
+            for(int x = 0; x < NUM_ACTIONS; x++){
+                int potentialAction = getDifference(strategyList[x], action);
+                oppRegretSum[x] += potentialAction + actionUtil;
+            }
+
         }
     }
 

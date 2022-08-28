@@ -12,8 +12,4 @@ public class KuhnTrainerTest {
         System.out.println(Arrays.toString(cards));
     }
 
-
-
-
-
 }
