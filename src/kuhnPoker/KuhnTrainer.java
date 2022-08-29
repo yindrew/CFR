@@ -1,3 +1,4 @@
+package kuhnPoker;
 import java.util.Random;
 import java.util.TreeMap;
 
@@ -82,3 +83,7 @@ public class KuhnTrainer {
         new KuhnTrainer().train(iterations);
     }
 }
+
+
+// b
+

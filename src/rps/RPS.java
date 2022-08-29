@@ -1,3 +1,6 @@
+package rps;
+
+import java.util.Arrays;
 import java.util.Random;
 
 public class RPS {
@@ -8,10 +11,12 @@ public class RPS {
             strategySum = new double[NUM_ACTIONS],
             oppRegretSum = new double[NUM_ACTIONS],
             oppStrategy = new double[NUM_ACTIONS],
-            oppStrategySum = new double[NUM_ACTIONS];
+            oppStrategySum = new double[NUM_ACTIONS],
+            badStrat = {.3, .35, .35};
 
     /**
      * getting the overarching strategy
+     * 
      * @return the frequencies at which to choose RPS
      */
     public double[] getStrategy() {
@@ -35,6 +40,7 @@ public class RPS {
 
     /**
      * determine a certain action
+     * 
      * @param strategy the frequencies at which to choose RPS
      * @return
      */
@@ -44,19 +50,6 @@ public class RPS {
         double cumulativeProbability = 0;
         while (a < NUM_ACTIONS - 1) {
             cumulativeProbability += strategy[a];
-            if (r < cumulativeProbability)
-                break;
-            a++;
-        }
-        return a;
-    }
-
-    public int getOppAction(double[] strategy) {
-        double r = random.nextDouble();
-        int a = 0;
-        double cumulativeProbability = 0;
-        while (a < NUM_ACTIONS - 1) {
-            cumulativeProbability += oppStrategy[a];
             if (r < cumulativeProbability)
                 break;
             a++;
@@ -82,6 +75,7 @@ public class RPS {
 
     /**
      * training the bot
+     * 
      * @param iterations number of iterations in which to train
      */
     public void train(int iterations) {
@@ -92,8 +86,8 @@ public class RPS {
             double[] strat = getStrategy();
             double[] oppStrategy = getOppStrategy();
             int myAction = getAction(strat);
-            int otherAction = getOppAction(oppStrategy);
-            
+            int otherAction = getAction(oppStrategy);
+
             oppActionUtility[myAction] = 0;
             oppActionUtility[(myAction + 1) % NUM_ACTIONS] = 1;
             oppActionUtility[(myAction + 2) % NUM_ACTIONS] = -1;
@@ -111,12 +105,60 @@ public class RPS {
 
             }
 
+
+
+
+        
         }
+        double[] avgStrat = this.getAverageStrategy(this.strategySum);
+        double[] oppAvgStrat = this.getAverageStrategy(this.oppStrategySum);
+        
+        System.out.println();
+        System.out.println("Frequencies at which to choose rock - paper - scissors");
+        System.out.println("Bo1: " + Arrays.toString(avgStrat));
+        System.out.println("Bot2: " + Arrays.toString(oppAvgStrat));
+        System.out.println();
+
+    }
+            /**
+     * training the bot
+     * 
+     * @param iterations number of iterations in which to train
+     */
+    public void trainBad(int iterations) {
+        double[] actionUtility = new double[NUM_ACTIONS];
+        // loops thru a number of times to get better
+        for (int x = 0; x < iterations; x++) {
+            double[] strat = getStrategy();
+            int myAction = getAction(strat);
+            int otherAction = getAction(badStrat);
+
+            actionUtility[otherAction] = 0;
+            actionUtility[(otherAction + 1) % NUM_ACTIONS] = 1;
+            actionUtility[(otherAction + 2) % NUM_ACTIONS] = -1;
+
+            for (int y = 0; y < NUM_ACTIONS; y++) {
+                // calculatates regret by adding the difference between
+                // our actual action and the other actions not chosen.
+                regretSum[y] += actionUtility[y] - actionUtility[myAction];
+            }
+
+        }
+
+
+        double[] avgStrat = this.getAverageStrategy(this.strategySum);
+
+        System.out.println();
+        System.out.println("Frequencies at which to choose rock - paper - scissors");
+        System.out.println("Player: " + Arrays.toString(badStrat));
+        System.out.println("Bot: " + Arrays.toString(avgStrat));
+        System.out.println();
 
     }
 
     /**
      * finds the final average strategy after a cetain number of hands
+     * 
      * @param strat the strategy used
      * @return the average strategy
      */
@@ -136,6 +178,12 @@ public class RPS {
         }
 
         return avgStrat;
+    }
+
+    public static void main(String[] args) {
+        int iterations = 10000000;
+        new RPS().train(iterations);
+        //new RPS().trainBad(iterations);
     }
 
 }

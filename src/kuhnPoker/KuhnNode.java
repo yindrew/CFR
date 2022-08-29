@@ -1,3 +1,4 @@
+package kuhnPoker;
 import java.util.Arrays;
 
 public class KuhnNode {

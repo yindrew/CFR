@@ -1,4 +1,4 @@
-import java.util.Arrays;
+package rps;
 
 import org.junit.Test;
 
@@ -18,18 +18,6 @@ public class RPSTest {
     public void testGetAction() {
         rps.strategy = rps.getStrategy();
         System.out.println(rps.getAction(rps.strategy));   
-
-    }
-
-    @Test
-    public void testAll() {
-        rps.train(1000000);
-        double[] avgStrat = rps.getAverageStrategy(rps.strategySum);
-        double[] oppAvgStrat = rps.getAverageStrategy(rps.oppStrategySum);
-
-       System.out.println(Arrays.toString(avgStrat));
-       System.out.println(Arrays.toString(oppAvgStrat));
-
     }
 
 

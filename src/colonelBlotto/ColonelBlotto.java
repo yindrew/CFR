@@ -1,3 +1,4 @@
+package colonelBlotto;
 import java.util.Random;
 
 /**
@@ -25,7 +26,8 @@ public class ColonelBlotto {
     String[] strategyList = { "500", "410", "401", "320", "311", "302",
             "230", "221", "212", "203", "140", "131", "122", "113", "104",
             "050", "041", "032", "023", "014", "005" };
-    
+
+    String oppStrat = "221";
     /**
      * get the strategy for player one
      * @return the strategy for player one
@@ -141,6 +143,47 @@ public class ColonelBlotto {
             }
 
         }
+
+        double[] avgStrat = this.getAverageStrategy(this.strategySum);
+        double[] oppAvgStrat = this.getAverageStrategy(this.oppStrategySum);
+        System.out.println("Strategy - playerOne - playerTwo");
+        for(int x = 0; x < avgStrat.length; x++){
+            System.out.println(this.strategyList[x] + " - " + avgStrat[x] + " - " + oppAvgStrat[x]);
+
+        }
+    }
+
+        /**
+     * training the bots by playing a multitude of times
+     * @param iterations the number of times the players play against each other
+     */
+    public void trainDummy(int iterations) {
+        for (int i = 0; i < iterations; i++) {
+            double[] playerStrat = getStrategy();
+            String action = getAction(playerStrat);
+
+            int actionUtil = getDifference(action, oppStrat);
+
+            for(int x = 0; x < NUM_ACTIONS; x++){
+                int potentialAction = getDifference(strategyList[x], oppStrat);
+                regretSum[x] += potentialAction - actionUtil;
+            }
+
+            for(int x = 0; x < NUM_ACTIONS; x++){
+                int potentialAction = getDifference(strategyList[x], action);
+                oppRegretSum[x] += potentialAction + actionUtil;
+            }
+
+        }
+
+        double[] avgStrat = this.getAverageStrategy(this.strategySum);
+        System.out.println();
+        System.out.println("Strategy - Frequency");
+        for(int x = 0; x < avgStrat.length; x++){
+            System.out.println(this.strategyList[x] + " - " + avgStrat[x]);
+
+        }
+        System.out.println();
     }
 
     /**
@@ -166,4 +209,11 @@ public class ColonelBlotto {
         return avgStrat;
     }
 
+
+    public static void main(String[] args) {
+        int iterations = 100000;
+        //new ColonelBlotto().train(iterations);
+        new ColonelBlotto().trainDummy(iterations);
+
+    }
 }

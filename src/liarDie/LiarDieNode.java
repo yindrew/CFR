@@ -1,3 +1,4 @@
+package liarDie;
 
 public class LiarDieNode {
     public double[] regretSum, strategy, strategySum;
