@@ -42,6 +42,13 @@ Kuhn poker is a game played by 2 players. Each player will draw a card from a de
 **Takeaways** What we are shown here is the strategies based on the gamestate the player is currently in. For example, if the game state is 1b, it represents the player is currently holding a 1, as well as the fact that the other player has currently bet. It then shows that if the player is holding a 1 and is facing a bet, the other player must have a higher card. The bot recognizes this and passes 100% of the time when facing a bet.  
 
 
+### Referenced Papers
+https://ai.facebook.com/blog/pluribus-first-ai-to-beat-pros-in-6-player-poker/ <br>
+http://modelai.gettysburg.edu/2013/cfr/cfr.pdf <br>
+https://www.science.org/doi/10.1126/science.aay2400
+
+
+
 
 
 
