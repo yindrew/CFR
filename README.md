@@ -1,20 +1,21 @@
-## Poker Bot - A Exploration into Counterfactual Regret Minimization (CFR)
+## Poker Bot - An Exploration into Counterfactual Regret Minimization (CFR)
 
-### CFR and its Applications
-CFR is a machine learning algorithim that is used to solve imperfect-information games. This technique is based on regret minimization where the bot will choose the decision with the highest regret value based on past iterations. Pluribus, a poker bot that utilized Monte Carlo CFR, was the first AI bot capable of beating human experts in six-player no-limit Hold'em, the most widely played poker format in the world. 
+### CFR and Its Applications
+CFR is a machine learning algorithim that is used to solve imperfect-information games. This technique is based on regret minimization where the bot will choose the decision that minimizes the regret value based on past decisions. Pluribus, a poker bot that utilized Monte Carlo CFR, was the first AI bot capable of beating human experts in six-player no-limit Hold'em, the most widely played poker format in the world. 
 <br>
 <br>
 ### Rock Paper Scissors
-We start by examining the game of Rock Paper Scissors. The bot picks a decision at random (rock or paper or scissors), and than calculates the regret of not picking the other decisions. It than updates its overall strategy by factoring in the regret and thereby changing the frequencies at which to choose decisions. 
+We start by examining the game of Rock Paper Scissors. The bot picks a decision at random (rock or paper or scissors), and then calculates the regret of not picking the other decisions. It than updates its overall strategy by factoring in the regret and thereby changing the frequencies at which to choose decisions. 
 
-**Strategy**: Suppose player one chooses rock and the bot randomly picks scissors. It starts by giving the actual pick a score of -1. It than takes a look at the other 2 decisions. it gives paper and rock a score of 1 and 0 respectively. It will than update it's strategy by picking rock and paper at higher frequency of the time the next time it plays.  
-<br> **Examples**: How does a bot respond when a player picks rock 40% of the time, paper 30% of the time, and scissors 30% of the time? What about 30% 35% 35% respectively for rock paper and scissors? What about when we put 2 bots to play against each other?
+**Strategy**: Suppose player one chooses rock and the bot randomly picks scissors. It starts by giving the actual pick a score of -1. It then takes a look at the other 2 decisions. It starts by giving the actual pick a score of -1. It then takes a look at the other 2 decisions: It assigns paper and rock a score of 1 and 0, respectively. The bot will then update its strategy by picking rock and paper at a higher frequency the next time it plays
+
+<br> **Examples**: How does a bot respond when a player picks rock 40% of the time, paper 30% of the time, and scissors 30% of the time? What about 30%, 35%, 35%, respectively for rock, paper, and scissors? What about when we put 2 bots to play against each other?
 
 ![image](https://user-images.githubusercontent.com/61204939/187297927-b14130e5-88f3-4cff-84c1-812c70a31cb3.png) <br>
 ![image](https://user-images.githubusercontent.com/61204939/187298515-39b72e4e-3e83-4b44-a862-f0919e647fbb.png) <br>
 ![image](https://user-images.githubusercontent.com/61204939/187298976-222a1b10-9c03-43a4-b2f5-b498fce1a54c.png) <br>
 
-**Takeaways**: A bot using CFR will find an optimal solution against the strategy it is playing against. In the first example where the player is playing (.4, .3, .3), we see that the bot adjust by playing paper almost 100% of the time when the player plays rock at a higher frequency. In the second example where a player is playing (.3, .35, .35), we see that the bot almost exclusively plays scissors when the player tends to play paper and scissors at a higher rate. If two bots are both using CFR than we reach a equilibrium where both bots will simply pick any of the three choices at random.
+**Takeaways**: A bot using CFR will find an optimal solution against the strategy it is playing against. In the first example where the player is playing (.4, .3, .3), we see that the bot adjusts by playing paper almost 100% of the time when the player plays rock at a higher frequency. In the second example where a player is playing (.3, .35, .35), we see that the bot almost exclusively plays scissors when the player tends to play paper and scissors at a higher rate. If two bots are both using CFR then an equilibrium is reached where both bots will simply pick any of the three choices at random.
 <br>
 <br>
 ### Colonel Blotto
