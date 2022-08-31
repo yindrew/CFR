@@ -41,7 +41,7 @@ Kuhn poker is a game played by 2 players. Each player will draw a card from a de
 ![image](https://user-images.githubusercontent.com/61204939/187321937-f5c22dbd-fcd9-4f8a-b764-808323f57633.png)
 
 
-**Takeaways**: We see that in order to play optimally, the frequencies at which you make decisions is extremely important. For example, if you are holding a three and are the first person to go (represented by "3" in the example), we see that the bot isn't always betting. but will pass around 30% of the time. 
+**Takeaways**: We see that in order to play optimally, the frequencies at which you make decisions is extremely important. For example, if you are holding a three and are the first person to go (represented by "3" in the game state), we see that the bot isn't always betting. but will pass around 30% of the time. 
 
 
 ### Referenced Articles
