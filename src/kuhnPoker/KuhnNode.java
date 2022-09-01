@@ -1,7 +1,9 @@
 package kuhnPoker;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 public class KuhnNode {
+    DecimalFormat df = new DecimalFormat("#.###");
     String infoSet;
     int NUM_ACTIONS = 2;
     double[] regretSum = new double[NUM_ACTIONS],
@@ -47,7 +49,7 @@ public class KuhnNode {
      * prints out the info set, and the corresponding average strategy at this decision node
      */
     public String toString() {
-        return String.format("%4s: %s", infoSet, Arrays.toString(getAverageStrategy()));
+        return String.format("%10s: %s", infoSet, "[" + df.format(getAverageStrategy()[0]) + ", " + df.format(getAverageStrategy()[1]) + "]");
     }
     
 

@@ -2,8 +2,11 @@ package rps;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.text.DecimalFormat;
+
 
 public class RPS {
+    DecimalFormat df = new DecimalFormat("#.###");
     public static final int ROCK = 0, PAPER = 1, SCISSORS = 2, NUM_ACTIONS = 3;
     public static final Random random = new Random();
     double[] regretSum = new double[NUM_ACTIONS],
@@ -12,7 +15,7 @@ public class RPS {
             oppRegretSum = new double[NUM_ACTIONS],
             oppStrategy = new double[NUM_ACTIONS],
             oppStrategySum = new double[NUM_ACTIONS],
-            badStrat = {.3, .35, .35};
+            badStrat = {.4, .3, .3};
 
     /**
      * getting the overarching strategy
@@ -114,9 +117,9 @@ public class RPS {
         double[] oppAvgStrat = this.getAverageStrategy(this.oppStrategySum);
         
         System.out.println();
-        System.out.println("Frequencies at which to choose rock - paper - scissors");
-        System.out.println("Bo1: " + Arrays.toString(avgStrat));
-        System.out.println("Bot2: " + Arrays.toString(oppAvgStrat));
+        System.out.println("      rock  paper  scissors");
+        System.out.println("Bot1: " + df.format(avgStrat[0]) + " " + df.format(avgStrat[1]) + " " + df.format(avgStrat[2]));
+        System.out.println("Bot2: " + df.format(oppAvgStrat[0]) + " " + df.format(oppAvgStrat[1]) + " " + df.format(oppAvgStrat[2]));
         System.out.println();
 
     }
@@ -148,10 +151,10 @@ public class RPS {
 
         double[] avgStrat = this.getAverageStrategy(this.strategySum);
 
-        System.out.println();
-        System.out.println("Frequencies at which to choose rock - paper - scissors");
-        System.out.println("Player: " + Arrays.toString(badStrat));
-        System.out.println("Bot: " + Arrays.toString(avgStrat));
+        System.out.println(); 
+        System.out.println("         rock   paper  scissors");
+        System.out.println("Player:  " + df.format(badStrat[0]) + "    " + df.format(badStrat[1]) + "    " +df.format(badStrat[2]));
+        System.out.println("Bot:     " + df.format(avgStrat[0]) + "      " + df.format(avgStrat[1]) + "       " +df.format(avgStrat[2]));
         System.out.println();
 
     }

@@ -1,4 +1,5 @@
 package colonelBlotto;
+import java.text.DecimalFormat;
 import java.util.Random;
 
 /**
@@ -6,6 +7,7 @@ import java.util.Random;
  * finding the optimal strategy
  */
 public class ColonelBlotto {
+    DecimalFormat df = new DecimalFormat("#.###");
     public static final int NUM_ACTIONS = 21;
     public static final Random random = new Random();
  
@@ -27,7 +29,7 @@ public class ColonelBlotto {
             "230", "221", "212", "203", "140", "131", "122", "113", "104",
             "050", "041", "032", "023", "014", "005" };
 
-    String oppStrat = "221";
+    String oppStrat = "302";
     /**
      * get the strategy for player one
      * @return the strategy for player one
@@ -146,11 +148,15 @@ public class ColonelBlotto {
 
         double[] avgStrat = this.getAverageStrategy(this.strategySum);
         double[] oppAvgStrat = this.getAverageStrategy(this.oppStrategySum);
-        System.out.println("Strategy - playerOne - playerTwo");
+        System.out.println();
+        System.out.println("Strategy   playerOne   playerTwo");
         for(int x = 0; x < avgStrat.length; x++){
-            System.out.println(this.strategyList[x] + " - " + avgStrat[x] + " - " + oppAvgStrat[x]);
+            if(avgStrat[x] > .01){
+                System.out.println(this.strategyList[x] + "        " + df.format(avgStrat[x]) + "       " + df.format(oppAvgStrat[x]) );
+            }
 
         }
+        System.out.println();
     }
 
         /**
@@ -178,9 +184,11 @@ public class ColonelBlotto {
 
         double[] avgStrat = this.getAverageStrategy(this.strategySum);
         System.out.println();
-        System.out.println("Strategy - Frequency");
+        System.out.println("Strategy  Frequency");
         for(int x = 0; x < avgStrat.length; x++){
-            System.out.println(this.strategyList[x] + " - " + avgStrat[x]);
+            if(avgStrat[x] > .01){
+                System.out.println(this.strategyList[x] + "       " + df.format(avgStrat[x]));
+            }
 
         }
         System.out.println();
@@ -211,7 +219,7 @@ public class ColonelBlotto {
 
 
     public static void main(String[] args) {
-        int iterations = 100000;
+        int iterations = 1000000;
         //new ColonelBlotto().train(iterations);
         new ColonelBlotto().trainDummy(iterations);
 

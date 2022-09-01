@@ -3,6 +3,7 @@ import java.util.Random;
 import java.util.TreeMap;
 
 public class KuhnTrainer {
+    
     public static final int PASS = 0, BET = 1, NUM_ACTIONS = 2;
     public static final Random random = new Random();
     public TreeMap<String, KuhnNode> nodeMap = new TreeMap<String, KuhnNode>();
@@ -16,8 +17,12 @@ public class KuhnTrainer {
 
         }
         System.out.println("Average game value: " + util / iterations);
+        System.out.println();
+        System.out.println("Game State: [Pass, Bet]");
+
         for (KuhnNode n : nodeMap.values())
             System.out.println(n);
+        System.out.println();
     }
 
     public void shuffle(int[] cards) {
