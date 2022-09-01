@@ -11,9 +11,11 @@ We start by examining the game of Rock Paper Scissors. The bot picks a decision 
 
 <br> **Examples**: How does a bot respond when a player picks rock 40% of the time, paper 30% of the time, and scissors 30% of the time? What about 30%, 35%, 35%, respectively for rock, paper, and scissors? What about when we put 2 bots to play against each other?
 
-![image](https://user-images.githubusercontent.com/61204939/187297927-b14130e5-88f3-4cff-84c1-812c70a31cb3.png) <br>
-![image](https://user-images.githubusercontent.com/61204939/187298515-39b72e4e-3e83-4b44-a862-f0919e647fbb.png) <br>
-![image](https://user-images.githubusercontent.com/61204939/187298976-222a1b10-9c03-43a4-b2f5-b498fce1a54c.png) <br>
+<img width="229" alt="image" src="https://user-images.githubusercontent.com/61204939/187938117-2ede65e0-87b7-4357-893c-3661476f46df.png"> <br>
+
+<img width="223" alt="image" src="https://user-images.githubusercontent.com/61204939/187937958-94ac6d2e-0930-457f-9c3d-6f7a17839143.png"> <br>
+
+<img width="215" alt="image" src="https://user-images.githubusercontent.com/61204939/187940690-e5e0f411-4c3a-4428-88e6-1a6ab06ca012.png"> <br>
 
 **Takeaways**: A bot using CFR will find an optimal solution against the strategy it is playing against. In the first example where the player is playing (.4, .3, .3), we see that the bot adjusts by playing paper almost 100% of the time when the player plays rock at a higher frequency. In the second example where a player is playing (.3, .35, .35), we see that the bot almost exclusively plays scissors when the player tends to play paper and scissors at a higher rate. If two bots are both using CFR then an equilibrium is reached where both bots will simply pick any of the three choices at random.
 <br>
