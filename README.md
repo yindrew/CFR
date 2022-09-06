@@ -45,7 +45,6 @@ Kuhn poker is a game played by 2 players. Each player will draw a card from a de
 
 **Takeaways**: We see that in order to play optimally, the frequencies at which you make decisions is extremely important. For example, if you are holding a three and are the first person to go (represented by "3" in the game state), we see that the bot isn't always betting. but will pass around 30% of the time. 
 
-
 ### Referenced Articles
 https://ai.facebook.com/blog/pluribus-first-ai-to-beat-pros-in-6-player-poker/ <br>
 http://modelai.gettysburg.edu/2013/cfr/cfr.pdf <br>
