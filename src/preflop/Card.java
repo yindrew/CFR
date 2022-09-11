@@ -9,7 +9,7 @@ public class Card {
 
     public Card(int suitIndex, int valueIndex) throws Exception {
         if(suitIndex < 0 || valueIndex < 0 || suitIndex > 3 || valueIndex > 12){
-            throw new Exception("Out of Bounds");
+            throw new Exception("Not a Real Card");
         }
         else{
             this.suit = suits[suitIndex];
@@ -19,7 +19,11 @@ public class Card {
 
     }
 
-    public String getCard() {
+    public char getValue() {
+        return value;
+    }
+
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(value);
         sb.append(suit);
