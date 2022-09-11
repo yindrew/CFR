@@ -1,6 +1,5 @@
 package rps;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.text.DecimalFormat;
 
