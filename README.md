@@ -1,11 +1,11 @@
 ## Poker Bot - An Exploration into Counterfactual Regret Minimization (CFR)
 
 ### CFR and Its Applications
-CFR is a machine learning algorithim that is used to solve imperfect-information games. This technique is based on regret minimization where the bot will choose the decision that minimizes the regret value based on past decisions. Pluribus, a poker bot that utilized Monte Carlo CFR, was the first AI bot capable of beating human experts in six-player no-limit Hold'em, the most widely played poker format in the world. 
+CFR is a machine learning algorithim that is used to solve imperfect-information games. This technique is based on regret minimization where the AI will choose the decision that minimizes the regret value based on past decisions. Pluribus, a poker bot that utilized Monte Carlo CFR, was the first AI capable of beating human experts in six-player no-limit Hold'em, the most widely played poker format in the world. 
 <br>
 <br>
 ### Rock Paper Scissors
-We start by examining the game of Rock Paper Scissors. The bot picks a decision at random (rock or paper or scissors), and then calculates the regret of not picking the other decisions. It than updates its overall strategy by factoring in the regret and thereby changing the frequencies at which to choose decisions. 
+We start by examining the game of Rock Paper Scissors. The bot picks a decision at random (rock or paper or scissors), and then calculates the regret values of the other decisions. It than updates its overall strategy by factoring in the regret and changing the frequencies at which to make decisions. 
 
 **Strategy**: Suppose player one chooses rock and the bot randomly picks scissors. It starts by giving the actual pick a score of -1. It then takes a look at the other 2 decisions. It starts by giving the actual pick a score of -1. It then takes a look at the other 2 decisions: It assigns paper and rock a score of 1 and 0, respectively. The bot will then update its strategy by picking rock and paper at a higher frequency the next time it plays
 
@@ -37,14 +37,13 @@ Colonel Blotto is a game played by two players: Each player will have N soldiers
 Kuhn poker is a game played by 2 players. Each player will draw a card from a deck holding 3 cards (1, 2, 3) without replacement. There are 2 actions a player can take, pass or bet. Players make actions alternatively. Shown below is a summary of possible play sequences with resulting chip payoffs. <br>
 ![image](https://user-images.githubusercontent.com/61204939/187319092-454ba419-3c7e-40e3-9159-d43620b48b01.png)
 
-**Strategy**: The bot will try and figure out what the best action is with the current information. It will initially start making actions at random, but using depth first search(dfs), will find the regret values at each decision node for all possible actions. This will eventually lead the bot to have a strategy that is unbeatable. In the example shown below, we show what happens when two bots play against each other. What we have shown here are the strategies based on the gamestate the player is currently in. For example, if the game state is 1b, it represents the player is currently holding a one, as well as the fact that the player bot has currently bet. The two numbers after that represent the frequency to pass or bet. In this case, we see that the player passes nearly 100% of the time when facing a bet and is holding a one.
+**Strategy**: The bot will try and figure out what the best action is with the current information. It will initially start making actions at random, but using depth first search, it will find the regret values at each decision node for all possible actions. This will eventually lead the bot to have a strategy that is unbeatable. In the example shown below, we show what happens when two bots play against each other. What we have shown here are the strategies based on the gamestate the player is currently in. For example, if the game state is 1b, it represents the player is currently holding a one, as well as the fact that the player bot has currently bet. The two numbers after that represent the frequency to pass or bet. In this case, we see that the player passes nearly 100% of the time when facing a bet and is holding a one.
 
 **Example**: With two bots playing against each other, we see what the optimal solution to this game will be. <br>
 <img width="191" alt="image" src="https://user-images.githubusercontent.com/61204939/187834996-07e8b808-ecde-49c2-8dee-e3143ef63337.png">
 
 
 **Takeaways**: We see that in order to play optimally, the frequencies at which you make decisions is extremely important. For example, if you are holding a three and are the first person to go (represented by "3" in the game state), we see that the bot isn't always betting. but will pass around 30% of the time. 
-
 
 ### Referenced Articles
 https://ai.facebook.com/blog/pluribus-first-ai-to-beat-pros-in-6-player-poker/ <br>
