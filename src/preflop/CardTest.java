@@ -22,9 +22,15 @@ public class CardTest {
         } catch (Exception Exception) {
         }
 
-        assertEquals(card1.toString(), "Ac");
-        assertEquals(card2.toString(), "Ks");
+        assertEquals(card1.toString(), "2c");
+        assertEquals(card2.toString(), "As");
 
+    }
+
+    @Test
+    public void testingCardStrength() throws Exception {
+        Card card = new Card(3, 0);
+        Card card1 = new Card("As");
     }
 
 }

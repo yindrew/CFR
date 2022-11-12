@@ -9,6 +9,7 @@ public class Deck {
 
     public Deck() throws Exception {
         this.newDeck();
+        this.shuffle();
     }
 
 
@@ -21,12 +22,20 @@ public class Deck {
             }
         }
         deckSize = 52;
+        shuffle();
         return count;
 
     }
 
     public Card[] getDeck() {
         return deck;
+    }
+
+    public Card[] dealHand() {
+        Card[] hand = new Card[2];
+        hand[0] = getCard();
+        hand[1] = getCard();
+        return hand;
     }
 
     public Card getCard() {
