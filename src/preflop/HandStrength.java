@@ -7,6 +7,13 @@ public class HandStrength {
     String[] hands = new String[1326];
     int cur = 0;
 
+
+    public void getRange(int val) {
+        for(int x = 0; x < val; x++){
+            System.out.println(hands[x]);
+        }
+    }
+
     public HandStrength() {
         a("AA"); a("KK");a("QQ");a("AKs");a("AKo");
         a("JJ");a("AQs");a("TT");a("AJs");a("AQo");
@@ -16,8 +23,8 @@ public class HandStrength {
         a("A8s");a("T9s");a("66");a("A7s");a("A5s");
         a("A6s");a("A4s");a("KJo");a("55");a("A9o");a("QJo");a("Q9s");a("A3s");
         a("K8s");a("44");a("J9s");a("KTo");a("T8s");
-        a("98s");a("QTo");a("JTo");a("A2");a("K7s");
-        a("33");a("K6s");a("Q8s");a("J8s");a("87s");
+        a("98s");a("QTo");;a("A2s");a("K7s");
+        a("33");a("K6s");a("Q8s");a("JTo");a("J8s");a("87s");
         a("97s");a("76s");a("K5s");a("65s");a("T7s");a("86s");
         a("A8o");a("K4s");a("96s");a("Q7s");a("Q6s");
         a("T9o");a("J7s");a("K3s");a("75s");a("K9o");

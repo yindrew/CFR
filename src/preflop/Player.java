@@ -13,7 +13,6 @@ public class Player {
         this.stack = stack;
     }
 
-
     public Hand getHand() {
         return realHand;
     }
@@ -33,10 +32,13 @@ public class Player {
         boolean rfi = true;
         int numberOfRaises = 0;
         ArrayList<Integer> positionsRaised = new ArrayList<Integer>();
+        ArrayList<Double> sizesRaised = new ArrayList<Double>();
+
         for (int x = 0; x < log.history.size(); x++) {
             if(log.history.get(x).actionTaken.equals("r")){
                 numberOfRaises += 1;
-                positionsRaised.add(log.history.get(x).pos);
+                positionsRaised.add(x);
+                sizesRaised.add(log.history.get(x).sizing);
                 rfi = false;
             }
         }
@@ -44,19 +46,28 @@ public class Player {
             totalHands = this.RFI(log.history.size());
         }
         else {
-            totalHands = this.raiseFold(numberOfRaises, positionsRaised);
+            totalHands = this.raiseFold(numberOfRaises, positionsRaised, sizesRaised);
         }
 
-
+        this.curRange = (int) totalHands;
         return (int) totalHands;
     }
 
-    public int raiseFold(int numberRaises, ArrayList<Integer> positions) {
-        double value = handStrength.cur;
-        for(int x = 0; x < numberRaises; x++) {
-                value = value * .22;
+
+
+    public int raiseFold(int numberRaises, ArrayList<Integer> positions, ArrayList<Double> sizes) {
+        if (numberRaises == 1) {
+            int rfi = this.RFI(positions.get(0));
+            double sizing = (sizes.get(0) - 2) * .015 * 1326;
+            return (int) ((rfi * .4) - sizing);
+
         }
-        return (int) value;
+        else {
+            positions.remove(positions.size() - 1);
+            sizes.remove(sizes.size() - 1);
+            int val = raiseFold(numberRaises - 1, positions, sizes);
+            return (int) (val * .4);
+        }
     }
 
 
@@ -85,7 +96,6 @@ public class Player {
         String handClass = realHand.handType();
         int range = this.getRange(actionHappened);
         boolean goodEnough = false;
-
 
         for (int x = 0; x < range; x++) {
             if (handStrength.hands[x].equals(handClass)) {
@@ -117,7 +127,5 @@ public class Player {
     }
 
 
-    
-
-    
+        
 }
