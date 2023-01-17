@@ -13,7 +13,7 @@ public class Table {
     public Table() throws Exception {
         deck = new Deck();
         for (int x = 0; x < 6; x++) {
-            players[x] = new Player(100); 
+            players[x] = new Player(); 
         }
 
     }
@@ -22,7 +22,6 @@ public class Table {
         deck.newDeck();
         for (int x = 0; x < players.length; x++) {
             players[x].setHand(deck.dealHand());
-            System.out.println("Player " + x + " is holding " + players[x].handToString());
         }
 
 
@@ -41,10 +40,10 @@ public class Table {
     public String actionTaken(int actionOn) {
         Log act = players[actionOn].getAction(realLog, actionOn);
         if (log.length() == 0){
-            log.append("player" + actionOn + " " + act.actionTaken + " " + act.sizing);
+            log.append("Player" + actionOn + " " + players[actionOn].handToString() + " " + act.actionTaken );
         }
         else {
-            log.append(" player" + actionOn + " " + act.actionTaken + " " + act.sizing);
+            log.append(" || Player" + actionOn + " " + players[actionOn].handToString() + " " + act.actionTaken);
         }
         realLog.add(act);
 
@@ -81,14 +80,16 @@ public class Table {
 
         // finish the rest of the action
         if (lastRaised != -1){
+            int cur = 0;
             while(actionOn != lastRaised){
-                String takenAction = players[actionOn].takenAction;
+                String takenAction = realLog.history.get(cur).actionTaken;
                 if (takenAction == "r" || takenAction == "c") {
                     String act = actionTaken(actionOn);
                     if (act.equals("r")) {
                         lastRaised = actionOn;
                     }
                 }
+                cur = (cur + 1) % 6;
                 actionOn = (actionOn + 1) % 6;
 
             }
@@ -103,18 +104,7 @@ public class Table {
     
 
     public void curState() {
-        System.out.println("The big blind is player " + bigBlind);
-        System.out.println("The small blind is player " + smallBlind);
-        System.out.println("action is currently on player " + actionOn);
-        System.out.println("The pot size is " + potSize);
-        System.out.println("The action log: " + log);
-
-
-
-
-
-
-
+        System.out.println(log);
     }
 
 }

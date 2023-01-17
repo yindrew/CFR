@@ -29,5 +29,6 @@ public class Hand {
         return suited ? sol + "s" : sol + "o";
     }
 
+
     
 }

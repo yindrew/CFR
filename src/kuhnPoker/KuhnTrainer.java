@@ -84,7 +84,7 @@ public class KuhnTrainer {
     }
 
     public static void main(String[] args) {
-        int iterations = 10000000;
+        int iterations = 10000;
         new KuhnTrainer().train(iterations);
     }
 }

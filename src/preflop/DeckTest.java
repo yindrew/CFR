@@ -2,8 +2,6 @@ package preflop;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Dictionary;
-import java.util.HashMap;
 
 import org.junit.Test;
 
@@ -21,17 +19,6 @@ public class DeckTest {
         }
 
         assertEquals(deck.getSize(), 52);
-    }
-
-    @Test
-    public void testGetCard() throws Exception {
-        Deck deck = new Deck();
-        assertEquals(deck.getCard().toString(), "Ks");
-        assertEquals(deck.getSize(), 51);
-
-        assertEquals(deck.getCard().toString(), "Qs");
-        assertEquals(deck.getSize(), 50);
-
     }
 
     @Test

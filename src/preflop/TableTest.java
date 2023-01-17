@@ -37,4 +37,20 @@ public class TableTest {
     }
 
 
+    @Test
+    public void testSpecific() throws Exception {
+
+        Table newTable = new Table();
+        newTable.initialSetUp();
+
+        newTable.players[0].setHand("AhKh");
+        newTable.players[1].setHand("QdQh");
+
+        newTable.wholeHand();
+        newTable.curState();
+
+    }
+
+    
+
 }
