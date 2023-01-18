@@ -8,7 +8,6 @@ public class TableTest {
     public void testing() throws Exception {
         Table newTable = new Table();
         newTable.deal();
-
     }
 
 
