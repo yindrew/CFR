@@ -43,6 +43,11 @@ public class TableTest {
         Table newTable = new Table();
         newTable.initialSetUp();
 
+        newTable.bigBlind = 1;
+        newTable.smallBlind = 0;
+        newTable.actionOn = 2;
+
+
         newTable.players[0].setHand("AhKh");
         newTable.players[1].setHand("QdQh");
 
@@ -52,5 +57,6 @@ public class TableTest {
     }
 
     
-
 }
+
+

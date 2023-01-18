@@ -70,7 +70,7 @@ public class Player {
 
     public int RFI(int pos) {
         if (pos == 0) {
-            return (int) (hs.cur * .44);
+            return (int) (hs.cur * .45);
         }
         else if (pos == 1) {
             return (int) (hs.cur * .55);
@@ -82,13 +82,13 @@ public class Player {
             return (int) (hs.cur);
         }
         else {
-            return (int) (hs.cur * .5);
+            return (int) (hs.cur * .95);
         }
     }
 
     public int bigBlindReaction(ArrayList<Integer> action) {
         if (action.size() == 1) {
-            return (int) (RFI(action.get(0)) * 1.1);
+            return (int) (RFI(action.get(0)));
         }
         else {
             int fourBet = (int) (threeBet(action) * .4);
@@ -148,11 +148,12 @@ public class Player {
 
         // BB action 
         if (actionHappened.history.size() == 5) {
+            // need to fix cold 4 betting
             int bbAction = bigBlindReaction(positionsRaised);
 
             if (positionsRaised.size() == 1) {
-                int raisingVal = (int) (bbAction * .125);
-                int calling = raisingVal + (int) (bbAction * .75);
+                int raisingVal = (int) (bbAction * .15);
+                int calling = raisingVal + (int) (bbAction * .83);
     
                 for (int x = 0; x < raisingVal; x++) {
                     if (hs.hands[x].equals(handClass)) {
@@ -218,7 +219,7 @@ public class Player {
                 }
                 else {
                     for (int x = 0; x < 26; x++) {
-                        if(hs.hands[x].equals(handClass) && actionHappened.history.size() < 10){
+                        if(hs.hands[x].equals(handClass) && actionHappened.history.size() < 9){
                             return new Log(whoOn, "r", 22);
                         }
     
