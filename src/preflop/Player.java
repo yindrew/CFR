@@ -2,6 +2,8 @@ package preflop;
 
 import java.util.ArrayList;
 
+import org.junit.Test.None;
+
 public class Player {
     private Hand hand;
     HandStrength hs = new HandStrength();
@@ -104,6 +106,8 @@ public class Player {
         int calling = raisingV + (int) (rfi * .20);
         int raisingB = calling + (int) (rfi * .04);
 
+        
+
         for (int x = 0; x < raisingV; x++) {
             if (hs.hands[x].equals(hand.handType)) {
                 return new Log(curPosition, "r", 24);
@@ -121,6 +125,7 @@ public class Player {
                 return new Log(curPosition, "r", 24);
             }
         }
+
         return new Log(curPosition, "f", 0);
 
 
@@ -214,17 +219,17 @@ public class Player {
 
             }
             else {
-                if (actionHappened.history.size() > 5 && numRaises == 2){
+                if (actionHappened.history.size() > 6 && numRaises == 2){
                     return facingThreeBet(actionHappened);
                 }
                 else {
                     for (int x = 0; x < 26; x++) {
-                        if(hs.hands[x].equals(handClass) && actionHappened.history.size() < 9){
+                        if(hs.hands[x].equals(handClass) && actionHappened.history.size() < 8){
                             return new Log(whoOn, "r", 22);
                         }
     
                     }
-                    return new Log(whoOn, "f", 0);
+                    return new Log(whoOn, "all in", 0);
                 }
             }
         }

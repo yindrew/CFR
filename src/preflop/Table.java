@@ -27,6 +27,16 @@ public class Table {
 
     }
 
+    public void setHand(int pos, String hand) {
+        players[pos].setHand(hand);
+    }
+
+    public void setPositions(int bb) {
+        this.bigBlind = bb;
+        smallBlind = (bigBlind + 5) % 6;
+        actionOn = (bigBlind + 1) % 6;
+    }
+
 
     public void initialSetUp() throws Exception {
         deal();
