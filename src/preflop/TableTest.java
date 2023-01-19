@@ -40,13 +40,13 @@ public class TableTest {
     public void testSpecific() throws Exception {
 
         Table newTable = new Table();
-        newTable.setPositions(2);
-        newTable.setHand(3, "5c2c"); 
-        newTable.setHand(4, "AdQd");
-        newTable.setHand(5, "Ad3h");
-        newTable.setHand(0, "Ts2d");
-        newTable.setHand(1, "JhTh");
-        newTable.setHand(2, "8sAd");
+        newTable.setPositions(5);
+        newTable.setHand(0, "5c2c"); 
+        newTable.setHand(1, "2h2h");
+        newTable.setHand(2, "3d3h");
+        newTable.setHand(3, "5s4s");
+        newTable.setHand(4, "Jh7h");
+        newTable.setHand(5, "As5s");
 
         newTable.wholeHand();
         newTable.curState();

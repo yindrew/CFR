@@ -31,8 +31,9 @@ public class HandStrength {
         a("86s");a("A8o");a("K4s");a("96s");a("Q7s");a("Q6s");
         a("T9o");a("J7s");a("K3s");a("75s");a("K9o");a("T6s");
         a("Q5s");a("Q9o");a("J9o");a("A7o");a("K2s");a("64s");
-        a("A5o");a("J6s");a("85s");a("22");a("T5s");a("J5s");
-        a("Q4s");a("T8o");a("98o");a("A4o");a("95s");a("Q3s");
+        a("54s");a("A5o");a("J6s");a("85s");a("22");a("T5s");
+        a("J5s");a("Q4s");a("T8o");a("98o");a("A4o");a("95s");
+        a("Q3s");
 
 
 

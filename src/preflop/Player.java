@@ -69,7 +69,7 @@ public class Player {
     }
 
 
-
+    // 0, 1, 2, 3, 4, 5 - LJ, HJ, CO, BU, SB, BB
     public int RFI(int pos) {
         if (pos == 0) {
             return (int) (hs.cur * .45);
@@ -90,7 +90,15 @@ public class Player {
 
     public int bigBlindReaction(ArrayList<Integer> action) {
         if (action.size() == 1) {
-            return (int) (RFI(action.get(0)));
+            double index = 1;
+            if (action.get(0) == 3) {
+                index = 1;
+            }
+            else {
+                index = 1.1;
+            }
+
+            return (int) (RFI(action.get(0)) * index);
         }
         else {
             int fourBet = (int) (threeBet(action) * .4);
@@ -177,7 +185,7 @@ public class Player {
 
             if (positionsRaised.size() == 1) {
                 int raisingVal = (int) (bbAction * .15);
-                int calling = raisingVal + (int) (bbAction * .83);
+                int calling = raisingVal + (int) (bbAction * .80);
     
                 for (int x = 0; x < raisingVal; x++) {
                     if (hs.hands[x].equals(handClass)) {
@@ -248,6 +256,9 @@ public class Player {
                             return new Log(whoOn, "r", 22);
                         }
                         if (hs.hands[x].equals(handClass) && actionHappened.history.size() == 7) {
+                            return new Log(whoOn, "all in", 100);
+                        }
+                        if (hs.hands[x].equals(handClass) && actionHappened.history.size() > 7) {
                             return new Log(whoOn, "all in", 100);
                         }
     
