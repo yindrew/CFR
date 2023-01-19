@@ -41,12 +41,12 @@ public class TableTest {
 
         Table newTable = new Table();
         newTable.setPositions(2);
-        newTable.setHand(3, "Ac5s");
-        newTable.setHand(4, "5dQh");    
-        newTable.setHand(5, "AdAh");
-        newTable.setHand(0, "KsKd");
+        newTable.setHand(3, "5c2c"); 
+        newTable.setHand(4, "AdQd");
+        newTable.setHand(5, "Ad3h");
+        newTable.setHand(0, "Ts2d");
         newTable.setHand(1, "JhTh");
-        newTable.setHand(2, "8s8d");
+        newTable.setHand(2, "8sAd");
 
         newTable.wholeHand();
         newTable.curState();

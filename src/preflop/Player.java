@@ -2,13 +2,13 @@ package preflop;
 
 import java.util.ArrayList;
 
-import org.junit.Test.None;
 
 public class Player {
     private Hand hand;
     HandStrength hs = new HandStrength();
     int stack = 100;
     int curPosition = 0;
+    boolean ip = false;
 
     public Player(){
     }
@@ -99,12 +99,35 @@ public class Player {
         
     }
 
+    
 
     public Log facingThreeBet(GameLog log) {
-        int rfi = RFI(curPosition);
+        int rfi = 0;
+        ArrayList<Integer> positionsRaised = new ArrayList<Integer>();
+
+        for (int x = 0; x < log.history.size();x++) {
+            if(log.history.get(x).pos == curPosition){
+                rfi = RFI(x);
+            }
+            if (log.history.get(x).actionTaken.equals("r")){
+                positionsRaised.add(x);
+            }
+
+        }
+
+        if (positionsRaised.get(1) == 4 || positionsRaised.get(1) == 5) {
+            ip = true;
+        }
+        else {
+            ip = false;
+        }
+
+        // 0 1 2 3 4 5 
+
+        
         int raisingV = (int) (rfi * .10);
         int calling = raisingV + (int) (rfi * .20);
-        int raisingB = calling + (int) (rfi * .04);
+        int raisingB = calling + (int) (rfi * .10);
 
         
 
@@ -130,9 +153,6 @@ public class Player {
 
 
 
-        
-        
-
     }
 
 
@@ -153,7 +173,6 @@ public class Player {
 
         // BB action 
         if (actionHappened.history.size() == 5) {
-            // need to fix cold 4 betting
             int bbAction = bigBlindReaction(positionsRaised);
 
             if (positionsRaised.size() == 1) {
@@ -218,18 +237,23 @@ public class Player {
 
 
             }
+
             else {
-                if (actionHappened.history.size() > 6 && numRaises == 2){
+                if (actionHappened.history.size() > 5 && numRaises == 2){
                     return facingThreeBet(actionHappened);
                 }
                 else {
                     for (int x = 0; x < 26; x++) {
-                        if(hs.hands[x].equals(handClass) && actionHappened.history.size() < 8){
+                        if(hs.hands[x].equals(handClass) && actionHappened.history.size() < 7){
                             return new Log(whoOn, "r", 22);
+                        }
+                        if (hs.hands[x].equals(handClass) && actionHappened.history.size() == 7) {
+                            return new Log(whoOn, "all in", 100);
                         }
     
                     }
-                    return new Log(whoOn, "all in", 0);
+                    
+                    return new Log(whoOn, "f", 0);
                 }
             }
         }
@@ -238,10 +262,6 @@ public class Player {
 
 
 
-    public int getPosition() {
-        return 0;
-
-    }
 
 
         
