@@ -44,6 +44,7 @@ public class Table {
         players[smallBlind].stack -= 1.5;
         potSize = 1.5;
     }
+    
 
 
 

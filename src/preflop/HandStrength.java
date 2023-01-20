@@ -33,6 +33,13 @@ public class HandStrength {
         a("Q5s");a("Q9o");a("J9o");a("A7o");a("K2s");a("64s");
         a("A5o");a("J6s");a("85s");a("22");a("T5s");a("J5s");
         a("Q4s");a("T8o");a("98o");a("A4o");a("95s");a("Q3s");
+        a("54s");a("A5o");a("J6s");a("85s");a("22");a("T5s");
+        a("J5s");a("Q4s");a("T8o");a("98o");a("A4o");a("95s");
+        a("Q3s");
+
+
+
+
     }
 
     public void a(String hand){
