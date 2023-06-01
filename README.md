@@ -1,4 +1,4 @@
-## Poker Bot - An Exploration into Counterfactual Regret Minimization (CFR)
+## An Exploration into Counterfactual Regret Minimization (CFR)
 
 ### CFR and Its Applications
 CFR is a machine learning algorithim that is used to solve imperfect-information games. This technique is based on regret minimization where the AI will choose the decision that minimizes the regret value based on past decisions. Pluribus, a poker bot that utilized Monte Carlo CFR, was the first AI capable of beating human experts in six-player no-limit Hold'em, the most widely played poker format in the world. 
